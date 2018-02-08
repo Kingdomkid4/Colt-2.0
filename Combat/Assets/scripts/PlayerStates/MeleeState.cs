@@ -6,15 +6,18 @@ public class MeleeState : IPlayerState
 {
     public Player player;
 
-    public void Enter(Player player)
-    {
-        this.player = player;
-        player.selectedWeapon = 3;
-        player.melee = true;
-    }
-
     #region Other Enters
     public void Enter(Player player, PrimaryWeapon primaryWeponStats, GameObject rifle, SideArm sideArmStats, GameObject sideArm)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void Enter(Player player, PrimaryWeapon primaryWeponStats, GameObject rifle)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void Enter(Player player, SideArm sideArmStats, GameObject sideArm)
     {
         throw new System.NotImplementedException();
     }
@@ -24,6 +27,13 @@ public class MeleeState : IPlayerState
         throw new System.NotImplementedException();
     }
     #endregion
+
+    public void Enter(Player player)
+    {
+        this.player = player;
+        player.selectedWeapon = 3;
+        player.melee = true;
+    }
 
     public void Execute()
     {

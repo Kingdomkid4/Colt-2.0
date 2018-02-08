@@ -10,6 +10,16 @@ public class ADSState : IPlayerState
         throw new System.NotImplementedException();
     }
 
+    public void Enter(Player player, PrimaryWeapon primaryWeponStats, GameObject rifle)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void Enter(Player player, SideArm sideArmStats, GameObject sideArm)
+    {
+        throw new System.NotImplementedException();
+    }
+
     public void Enter(Player player, GameObject meleeWeapon, MeleeWeapon weaponStats)
     {
         throw new System.NotImplementedException();
@@ -20,6 +30,8 @@ public class ADSState : IPlayerState
     {
         
     }
+
+    
 
     public void Execute()
     {

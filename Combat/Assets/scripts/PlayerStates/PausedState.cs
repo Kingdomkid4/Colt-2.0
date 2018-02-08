@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class PausedState : IPlayerState
 {
-    public void Enter(Player player)
-    {
-        
-    }
-
     #region Other Enters
     public void Enter(Player player, PrimaryWeapon primaryWeponStats, GameObject rifle, SideArm sideArmStats, GameObject sideArm)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void Enter(Player player, PrimaryWeapon primaryWeponStats, GameObject rifle)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void Enter(Player player, SideArm sideArmStats, GameObject sideArm)
     {
         throw new System.NotImplementedException();
     }
@@ -20,6 +25,11 @@ public class PausedState : IPlayerState
         throw new System.NotImplementedException();
     }
     #endregion
+
+    public void Enter(Player player)
+    {
+        
+    }
 
     public void Execute()
     {
