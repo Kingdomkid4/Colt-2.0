@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Player : MonoBehaviour
 {
@@ -22,18 +20,20 @@ public class Player : MonoBehaviour
 
     public GameObject octagon;
 
-    public MeleeWeapon m9Kinfe = new MeleeWeapon();
+    public MeleeWeapon m9Knife = new MeleeWeapon();
     public PrimaryWeapon aK47 = new PrimaryWeapon();
     public PrimaryWeapon AKM = new PrimaryWeapon();
     public SideArm glock9Mill = new SideArm();
     public Explosive fragGranade = new Explosive();
 
+    public PrimaryWeapon primaryWeapon = new PrimaryWeapon();
+
     private IPlayerState currentState;
 
     void Start()
     {
-        m9Kinfe.damage = 100;
-        m9Kinfe.range = 5; //tbd
+        m9Knife.damage = 100;
+        m9Knife.range = 5; //tbd
 
         aK47.damage = 10f;
         aK47.range = 100f;
@@ -85,12 +85,23 @@ public class Player : MonoBehaviour
         {
             if (selectedWeapon <= 0)
             {
-                selectedWeapon = 2;
+                selectedWeapon = 1;
             }
             else
             {
                 selectedWeapon--;
             }
+        }
+
+        if (selectedWeapon == 0)
+        {
+            rifle.SetActive(true);
+            sideArm.SetActive(false);
+        }
+        else
+        {
+            rifle.SetActive(false);
+            sideArm.SetActive(true);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -122,12 +133,12 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.Alpha3))
         {
-            ChangeState(new MeleeState(), meleeWeapon, m9Kinfe);
+            ChangeState(new MeleeState(), meleeWeapon, m9Knife);
         }
 
         if (Input.GetKeyDown(KeyCode.G))
         {
-            ChangeState(new MeleeState(), meleeWeapon, m9Kinfe);
+            ChangeState(new MeleeState(), meleeWeapon, m9Knife);
         }
 
         if (Input.GetButtonDown("Fire1") && selectedWeapon == 0)
@@ -136,7 +147,7 @@ public class Player : MonoBehaviour
         }
         else if (Input.GetButtonDown("Fire1") && Input.GetButtonDown("Fire2") && selectedWeapon == 0)
         {
-            ChangeState(new PrimaryShootingADSState(), aK47, rifle);
+            ChangeState(new PrimaryShootingADSState(), AKM, rifle);
         }
         else if (Input.GetButtonDown("Fire2") && selectedWeapon == 0)
         {

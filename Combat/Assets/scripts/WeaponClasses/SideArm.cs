@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SideArm
+public class SideArm : MonoBehaviour
 {
     public float damage = 10f;
     public float range = 100f;
