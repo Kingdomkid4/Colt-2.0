@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -505,6 +505,53 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 63685b781bb29434e9cec6b774467e19, type: 2}
   m_IsPrefabParent: 0
+--- !u!1001 &208655071
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4549789852807940, guid: 35d5512de2fe80241867fc903bd7e1ad, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549789852807940, guid: 35d5512de2fe80241867fc903bd7e1ad, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549789852807940, guid: 35d5512de2fe80241867fc903bd7e1ad, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549789852807940, guid: 35d5512de2fe80241867fc903bd7e1ad, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549789852807940, guid: 35d5512de2fe80241867fc903bd7e1ad, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549789852807940, guid: 35d5512de2fe80241867fc903bd7e1ad, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549789852807940, guid: 35d5512de2fe80241867fc903bd7e1ad, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549789852807940, guid: 35d5512de2fe80241867fc903bd7e1ad, type: 2}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114656669001857958, guid: 35d5512de2fe80241867fc903bd7e1ad,
+        type: 2}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 682532567}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 35d5512de2fe80241867fc903bd7e1ad, type: 2}
+  m_IsPrefabParent: 0
 --- !u!4 &320095366 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
@@ -799,7 +846,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1e+13
-  meterial: Flesh
+  material: 
   block: 0
 --- !u!4 &526714337 stripped
 Transform:
@@ -986,7 +1033,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  meterial: Flesh
+  material: 
   block: 0
 --- !u!1 &703140248
 GameObject:
@@ -1086,7 +1133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  meterial: Flesh
+  material: 
   block: 0
 --- !u!1 &750920177
 GameObject:
@@ -1384,6 +1431,36 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: bc47d6d03a2cd0b4ab4297dfd2edfe5f, type: 3}
   m_PrefabInternal: {fileID: 1505347166}
+--- !u!1 &1521061363 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100002, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
+  m_PrefabInternal: {fileID: 1719171733}
+--- !u!114 &1521061367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1521061363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36afec708d849ac46b97b8aeada63d57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1523291805 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
+  m_PrefabInternal: {fileID: 1719171733}
+--- !u!114 &1523291810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1523291805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36afec708d849ac46b97b8aeada63d57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1629958669
 Prefab:
   m_ObjectHideFlags: 0
@@ -1544,7 +1621,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  meterial: Flesh
+  material: 
   block: 0
 --- !u!1001 &1719171733
 Prefab:
@@ -1788,5 +1865,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  meterial: Flesh
+  material: 
   block: 0

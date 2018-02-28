@@ -2,9 +2,9 @@
 
 public class Target : MonoBehaviour
 {
-    public float health = 50f;
+    public float health = 100f;
 
-    public string meterial;
+    public string material;
 
     public int block;
 

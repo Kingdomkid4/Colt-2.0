@@ -148,7 +148,7 @@ public class PrimaryShootingState :  IPlayerState
             {
                 target.TakeDamage(rifle.damage);
 
-                if (target.meterial == "Flesh")
+                if (target.material == "Flesh")
                 {
                     GameObject impactFleshGO = MonoBehaviour.Instantiate(rifle.fleshImapctEffect, hit.point, Quaternion.LookRotation(hit.normal));
 
