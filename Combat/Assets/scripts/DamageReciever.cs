@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class DamageReciever : MonoBehaviour
 {
+    public GameObject deathScreen;
 
     float hitpoints = 100.0f;
+
+    private void Start()
+    {
+        deathScreen.SetActive(false);
+    }
 
     void ApplyDamage(float damage)
     {
@@ -13,6 +19,8 @@ public class DamageReciever : MonoBehaviour
         if (hitpoints <= 0)
         {
             Debug.Log("u ded");
+            deathScreen.SetActive(true);
+
         }
     }
 

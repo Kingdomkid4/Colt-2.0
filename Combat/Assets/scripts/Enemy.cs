@@ -31,10 +31,7 @@ public class Enemy : MonoBehaviour
     void Start ()
     {
         spawnPosition = transform.position;
-        if (!target)
-        {
-            target = GameObject.FindGameObjectWithTag("Player").transform;
-        }
+        target = GameObject.Find("FirstPersonCharacter").transform;
         animator.Play("Standing");
     }
 
