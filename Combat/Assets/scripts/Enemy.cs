@@ -27,6 +27,7 @@ public class Enemy : MonoBehaviour
     public Animator animator;
     float accuracy = 0.75f;
     private Vector3 spawnPosition;
+    public ParticleSystem muzzleFlash;
 
     void Start ()
     {
@@ -47,7 +48,7 @@ public class Enemy : MonoBehaviour
         {
             Debug.Log("is close enough");
             isAttacking = true;
-            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Standing") || offset.magnitude > punchRadius * 2)
+            if ((animator.GetCurrentAnimatorStateInfo(0).IsName("Standing") || offset.magnitude > punchRadius * 2) && !animator.GetCurrentAnimatorStateInfo(0).IsName("Shooting"))
             {
                 animator.Play("Walking");
             }
@@ -112,10 +113,12 @@ public class Enemy : MonoBehaviour
 
     void Shoot()
     {
+        animator.Play("Shooting");
         if (Random.value > accuracy)
         {
             target.SendMessage("ApplyDamage", baseShotDamage + Random.Range(0, 5.01f));
         }
+        muzzleFlash.Play();
     }
 
     #region oldcode
