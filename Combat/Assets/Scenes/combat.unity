@@ -882,7 +882,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1e+13
-  material: 
+  material: Flesh
   block: 0
 --- !u!1 &573987667 stripped
 GameObject:
@@ -1064,7 +1064,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  material: 
+  material: Flesh
   block: 0
 --- !u!1 &703140248
 GameObject:
@@ -1164,7 +1164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  material: 
+  material: Flesh
   block: 0
 --- !u!1 &750920177
 GameObject:
@@ -1666,7 +1666,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  material: 
+  material: Flesh
   block: 0
 --- !u!1001 &1719171733
 Prefab:
@@ -1910,5 +1910,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  material: 
+  material: Flesh
   block: 0

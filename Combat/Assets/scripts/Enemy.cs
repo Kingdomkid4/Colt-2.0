@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
     float idleTime = 1.6f;
     Vector3 punchPosititon = new Vector3(0, 0, 0.7f);
     float punchRadius = 1.1f;
-    float shootDistance = 10;
+    float shootDistance = 8;
     AudioClip idleSound;
     AudioClip attackSound;
     private float attackAngle = 10;
@@ -28,6 +28,7 @@ public class Enemy : MonoBehaviour
     float accuracy = 0.75f;
     private Vector3 spawnPosition;
     public ParticleSystem muzzleFlash;
+    private Vector3 direction;
 
     void Start ()
     {
@@ -48,7 +49,7 @@ public class Enemy : MonoBehaviour
         {
             Debug.Log("is close enough");
             isAttacking = true;
-            if ((animator.GetCurrentAnimatorStateInfo(0).IsName("Standing") || offset.magnitude > punchRadius * 2) && !animator.GetCurrentAnimatorStateInfo(0).IsName("Shooting"))
+            if ((animator.GetCurrentAnimatorStateInfo(0).IsName("Standing") || offset.magnitude > punchRadius * 2) && offset.magnitude > shootDistance)
             {
                 animator.Play("Walking");
             }
@@ -57,7 +58,6 @@ public class Enemy : MonoBehaviour
                 //stop audio and start attack sound
             }
             float time = 0;
-            Vector3 direction;
             if (angle > 5 || time < attackTurnTime)
             {
                 time += Time.deltaTime;
@@ -98,6 +98,7 @@ public class Enemy : MonoBehaviour
         }
         else
         {
+            bool tosp = true;
             Debug.Log("is too far away");
             if (Time.time - lastAttack < 3)
             {
@@ -105,7 +106,21 @@ public class Enemy : MonoBehaviour
             }
             else
             {
-                //go back to spawn and walk back and forth
+                animator.Play("Walking");
+                if (transform.position == spawnPosition || transform.position == spawnPosition + new Vector3(10,0))
+                {
+                    tosp = !tosp;
+                }
+                if (tosp)
+                {
+                    transform.LookAt(spawnPosition);
+                }
+                else
+                {
+                    transform.LookAt(spawnPosition + new Vector3(10, 0));
+                }
+                direction = transform.TransformDirection(Vector3.forward * attackSpeed);
+                characterController.SimpleMove(direction);
             }
         }
         Debug.ClearDeveloperConsole();
