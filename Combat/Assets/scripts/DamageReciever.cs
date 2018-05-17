@@ -18,9 +18,9 @@ public class DamageReciever : MonoBehaviour
         hitpoints -= damage;
         if (hitpoints <= 0)
         {
-            Debug.Log("u ded");
+            Debug.Log("You died");
             deathScreen.SetActive(true);
-
+            Enemy.gameOver = true;
         }
     }
 

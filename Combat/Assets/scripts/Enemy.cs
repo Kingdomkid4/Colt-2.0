@@ -29,6 +29,9 @@ public class Enemy : MonoBehaviour
     private Vector3 spawnPosition;
     public ParticleSystem muzzleFlash;
     private Vector3 direction;
+    bool tosp = false;
+    Vector3 goal;
+    public static bool gameOver = false;
 
     void Start ()
     {
@@ -39,91 +42,100 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (idleSound && isAttacking)
+        if (!gameOver)
         {
-            //stop current audio and start other
-        }
-        Vector3 offset = transform.position - target.position;
-        float angle = Vector3.Angle(offset, transform.forward);
-        if (offset.magnitude < attackDistance)
-        {
-            Debug.Log("is close enough");
-            isAttacking = true;
-            if ((animator.GetCurrentAnimatorStateInfo(0).IsName("Standing") || offset.magnitude > punchRadius * 2) && offset.magnitude > shootDistance)
+            if (idleSound && isAttacking)
             {
-                animator.Play("Walking");
+                //stop current audio and start other
             }
-            if (attackSound)
+            Vector3 offset = transform.position - target.position;
+            float angle = Vector3.Angle(offset, transform.forward);
+            RaycastHit a = new RaycastHit();
+            Physics.Raycast(transform.position, target.position, out a);
+            if (offset.magnitude < attackDistance && a.rigidbody == target.GetComponent<Rigidbody>())
             {
-                //stop audio and start attack sound
-            }
-            float time = 0;
-            if (angle > 5 || time < attackTurnTime)
-            {
-                time += Time.deltaTime;
-                transform.LookAt(target.transform);
-                transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
-                direction = transform.TransformDirection(Vector3.forward * attackSpeed);
-                characterController.SimpleMove(direction);
-            }
-            float timer = 0.0f;
-            bool lostSight = false;
-            if (timer < extraRunTime)
-            {
-                if (Mathf.Abs(angle) > 40)
+                Debug.Log("is close enough");
+                isAttacking = true;
+                if ((animator.GetCurrentAnimatorStateInfo(0).IsName("Standing") || offset.magnitude > punchRadius * 2) && offset.magnitude > shootDistance)
                 {
-                    lostSight = true;
+                    animator.Play("Walking");
                 }
-                if (lostSight)
+                if (attackSound)
                 {
-                    timer += Time.deltaTime;
+                    //stop audio and start attack sound
                 }
-                direction = transform.TransformDirection(Vector3.forward * attackSpeed);
-                characterController.SimpleMove(direction);
-                Vector3 pos = transform.TransformPoint(punchPosititon);
-                if (Time.time > lastAttack + 0.5 && (pos - target.position).magnitude < punchRadius)
+                float time = 0;
+                if (angle > 5 || time < attackTurnTime)
                 {
+                    time += Time.deltaTime;
+                    transform.LookAt(target.transform);
+                    transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
+                    direction = transform.TransformDirection(Vector3.forward * attackSpeed);
+                    characterController.SimpleMove(direction);
+                }
+                float timer = 0.0f;
+                bool lostSight = false;
+                if (timer < extraRunTime)
+                {
+                    if (Mathf.Abs(angle) > 40)
+                    {
+                        lostSight = true;
+                    }
+                    if (lostSight)
+                    {
+                        timer += Time.deltaTime;
+                    }
+                    direction = transform.TransformDirection(Vector3.forward * attackSpeed);
+                    characterController.SimpleMove(direction);
+                    Vector3 pos = transform.TransformPoint(punchPosititon);
+                    if (Time.time > lastAttack + 0.5 && (pos - target.position).magnitude < punchRadius)
+                    {
 
-                    animator.Play("Punching");
-                    target.SendMessage("ApplyDamage", punchDamage);
-                    lastAttack = Time.time;
+                        animator.Play("Punching");
+                        target.SendMessage("ApplyDamage", punchDamage);
+                        lastAttack = Time.time;
+                    }
+                    else if (Time.time > lastAttack + 0.5 && (pos - target.position).magnitude < shootDistance)
+                    {
+                        Shoot();
+                        lastAttack = Time.time;
+                    }
                 }
-                else if (Time.time > lastAttack + 0.5  && (pos - target.position).magnitude < shootDistance)
-                {
-                    Shoot();
-                    lastAttack = Time.time;
-                }
-            }
-            isAttacking = false;
-        }
-        else
-        {
-            bool tosp = true;
-            Debug.Log("is too far away");
-            if (Time.time - lastAttack < 3)
-            {
-                animator.Play("Standing");
+                isAttacking = false;
             }
             else
             {
-                animator.Play("Walking");
-                if (transform.position == spawnPosition || transform.position == spawnPosition + new Vector3(10,0))
+                Debug.Log("is too far away");
+                if (Time.time - lastAttack < 3)
                 {
-                    tosp = !tosp;
-                }
-                if (tosp)
-                {
-                    transform.LookAt(spawnPosition);
+                    animator.Play("Standing");
                 }
                 else
                 {
-                    transform.LookAt(spawnPosition + new Vector3(10, 0));
+                    animator.Play("Walking");
+                    if (tosp)
+                    {
+                        goal = spawnPosition;
+                    }
+                    else
+                    {
+                        goal = spawnPosition + new Vector3(10, 0, 0);
+                    }
+                    transform.LookAt(goal);
+                    transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
+                    transform.position = Vector3.MoveTowards(transform.position, goal, .04f);
                 }
-                direction = transform.TransformDirection(Vector3.forward * attackSpeed);
-                characterController.SimpleMove(direction);
+                if (transform.position == goal)
+                {
+                    tosp = !tosp;
+                }
             }
+            Debug.ClearDeveloperConsole();
         }
-        Debug.ClearDeveloperConsole();
+        else
+        {
+            animator.Play("Standing");
+        }
     }
 
     void Shoot()

@@ -1561,7 +1561,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: u ded
+  m_Text: You died
 --- !u!222 &1563670126
 CanvasRenderer:
   m_ObjectHideFlags: 0

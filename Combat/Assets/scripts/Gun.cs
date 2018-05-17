@@ -216,7 +216,6 @@ public class Gun : MonoBehaviour
             if (target != null)
             {
                 target.TakeDamage(damage);
-
                 if (target.material == "Flesh")
                 {
                     GameObject impactFleshGO = Instantiate(fleshImapctEffect, hit.point, Quaternion.LookRotation(hit.normal));
